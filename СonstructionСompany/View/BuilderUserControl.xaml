@@ -1,0 +1,120 @@
+﻿<UserControl x:Class="СonstructionСompany.View.BuilderUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:СonstructionСompany.View"
+             xmlns:main="clr-namespace:СonstructionСompany"
+             mc:Ignorable="d" 
+             IsVisibleChanged="UserControl_IsVisibleChanged"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Левая область -->
+        <StackPanel Grid.Column="0" Margin="10">
+
+            <TextBox 
+                    x:Name="IdTextBox" 
+                    main:TextBoxPlaceholderBehavior.Placeholder="ID" 
+                    Width="250" 
+                    Height="25" 
+                    Margin="0,0,0,10" 
+                    IsReadOnly="True" 
+                    Background="LightGray"/>
+
+            <TextBox 
+                    x:Name="FirstNameTextBox" 
+                    main:TextBoxPlaceholderBehavior.Placeholder="Имя" 
+                    Width="250" 
+                    Height="25" 
+                    Margin="0,0,0,10"/>
+
+            <TextBox 
+                    x:Name="SecondNameTextBox" 
+                    main:TextBoxPlaceholderBehavior.Placeholder="Фамилия" 
+                    Width="250" 
+                    Height="25" 
+                    Margin="0,0,0,10"/>
+
+            <TextBox 
+                    x:Name="PatronymicTextBox" 
+                    main:TextBoxPlaceholderBehavior.Placeholder="Отчество" 
+                    Width="250" 
+                    Height="25" 
+                    Margin="0,0,0,10"/>
+
+            <TextBlock Text="Дата рождения" Margin="0,5,0,2"/>
+            <DatePicker 
+                    x:Name="DateOfBirthPicker" 
+                    Width="250" 
+                    Height="25" 
+                    Margin="0,0,0,10"/>
+
+            <TextBox 
+                    x:Name="ResidentialAddressTextBox" 
+                    main:TextBoxPlaceholderBehavior.Placeholder="Адрес проживания" 
+                    Width="250" 
+                    Height="25" 
+                    Margin="0,0,0,10"/>
+
+            <TextBox 
+                    x:Name="LengthOfServiceTextBox" 
+                    main:TextBoxPlaceholderBehavior.Placeholder="Стаж работы (лет)" 
+                    Width="250" 
+                    Height="25" 
+                    Margin="0,0,0,10"/>
+
+            <TextBox 
+                    x:Name="SpecialtiesTextBox" 
+                    main:TextBoxPlaceholderBehavior.Placeholder="Специальности" 
+                    Width="250" 
+                    Height="25" 
+                    Margin="0,0,0,10"/>
+
+            <TextBox 
+                    x:Name="BrigadeIdTextBox" 
+                    main:TextBoxPlaceholderBehavior.Placeholder="ID Бригады" 
+                    Width="250" 
+                    Height="25" 
+                    Margin="0,0,0,10"/>
+
+            <TextBox 
+                    x:Name="BrigadeNameTextBox" 
+                    main:TextBoxPlaceholderBehavior.Placeholder="Название Бригады" 
+                    Width="250" 
+                    Height="25" 
+                    Margin="0,0,0,10" 
+                    IsReadOnly="True" 
+                    Background="LightGray"/>
+
+            <!-- Кнопки CRUD -->
+            <StackPanel Orientation="Vertical" Margin="0,20,0,0">
+                <Button Content="Добавить" Width="200" Margin="5" Click="AddButton_Click" />
+                <Button Content="Изменить" Width="200" Margin="5" Click="UpdateButton_Click" />
+                <Button Content="Удалить" Width="200" Margin="5" Click="DeleteButton_Click" />
+            </StackPanel>
+        </StackPanel>
+
+
+        <!-- Правая область -->
+        <DataGrid x:Name="BuilderDataGrid" Grid.Column="1" AutoGenerateColumns="False"
+                  SelectionChanged="BuilderDataGrid_SelectionChanged" IsReadOnly="True" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" />
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="*" />
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding SecondName}" Width="*" />
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="*" />
+                <DataGridTextColumn Header="Дата рождения" Binding="{Binding DateOfBirth, StringFormat=dd.MM.yyyy}" Width="*" />
+                <DataGridTextColumn Header="Адрес проживания" Binding="{Binding ResidentialAddress}" Width="*" />
+                <DataGridTextColumn Header="Стаж работы" Binding="{Binding LengthOfService}" Width="*" />
+                <DataGridTextColumn Header="Специальности" Binding="{Binding Specialties}" Width="*" />
+                <DataGridTextColumn Header="ID Бригады" Binding="{Binding BrigadeId}" Width="*" />
+                <DataGridTextColumn Header="Название Бригады" Binding="{Binding Brigade.Name}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

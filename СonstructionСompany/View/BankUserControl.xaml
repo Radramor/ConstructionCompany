@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="СonstructionСompany.View.BankUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:СonstructionСompany.View"
+             xmlns:main="clr-namespace:СonstructionСompany"
+             
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Левая сторона: Поля ввода и кнопки -->
+        <StackPanel Grid.Column="0" Margin="10" VerticalAlignment="Top">
+            <TextBox main:TextBoxPlaceholderBehavior.Placeholder="ID" 
+                     x:Name="IdTextBox" 
+                     Margin="0,0,0,10" 
+                     Width="250" 
+                     Height="25" 
+                     IsReadOnly="True" 
+                     Background="LightGray"/>
+
+            <TextBox main:TextBoxPlaceholderBehavior.Placeholder="Название банка" 
+                     x:Name="BankNameTextBox" 
+                     Margin="0,0,0,10" 
+                     Width="250" 
+                     Height="25"/>
+
+            <TextBox main:TextBoxPlaceholderBehavior.Placeholder="Адрес" 
+                     x:Name="BankAddressTextBox" 
+                     Margin="0,0,0,10" 
+                     Width="250" 
+                     Height="25"/>
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,20,0,0">
+                <Button x:Name="ButtonAdd" Content="Добавить" Margin="5" Width="200" Click="ButtonAdd_Click"/>
+                <Button x:Name="ButtonUpdate" Content="Изменить" Margin="5" Width="200" Click="ButtonUpdate_Click"/>
+                <Button x:Name="ButtonDelete" Content="Удалить" Margin="5" Width="200" Click="ButtonDelete_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Правая сторона: Таблица -->
+        <DataGrid x:Name="DataGridBank" Grid.Column="1" AutoGenerateColumns="False"
+                  IsReadOnly="True" SelectionMode="Single"
+                  SelectionChanged="DataGridBank_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*"/>
+                <DataGridTextColumn Header="Название банка" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Адрес" Binding="{Binding Address}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

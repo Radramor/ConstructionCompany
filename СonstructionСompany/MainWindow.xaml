@@ -1,0 +1,61 @@
+﻿<Window x:Class="СonstructionСompany.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:СonstructionСompany"
+        xmlns:view="clr-namespace:СonstructionСompany.View"
+        mc:Ignorable="d"
+        Title="Строительная компания"  MinHeight="820" Width="1400" MinWidth="900">
+    <Grid>
+        <TabControl Name="TabsControl">
+            <TabControl.Template>
+                <ControlTemplate TargetType="TabControl">
+                    <Grid KeyboardNavigation.TabNavigation="Local">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Grid.Row="0">
+                            <TabPanel x:Name="HeaderPanel" IsItemsHost="True" KeyboardNavigation.TabIndex="1" />
+                        </ScrollViewer>
+                        <ContentPresenter x:Name="ContentPanel" Grid.Row="1" ContentSource="SelectedContent" />
+                    </Grid>
+                </ControlTemplate>
+            </TabControl.Template>
+            <TabItem Header="Бригады" >
+                <view:BrigadeUserControl />
+            </TabItem>
+            <TabItem Header="Строители">
+                <view:BuilderUserControl />
+            </TabItem>
+            <TabItem Header="Описание работ">
+                <view:AccountingForWorkPerformedUserControl />
+            </TabItem>
+            <TabItem Header="Строительные материалы">
+                <view:BuildingMaterialUserControl />
+            </TabItem>
+            <TabItem Header="Склады">
+                <view:WarehouseUserControl />
+            </TabItem>
+            <TabItem Header="Закупка материалов">
+                <view:BuyingBuildingMaterialsUserControl />
+            </TabItem>
+            <TabItem Header="Отправка материалов">
+                <view:BuildingMaterialDistributionUserControl />
+            </TabItem>
+            <TabItem Header="Объекты">
+                <view:ObjectUserControl/>
+            </TabItem>
+            <TabItem Header="Сметы">
+                <view:EstimateUserControl/>
+            </TabItem>
+            <TabItem Header="Поставщики">
+                <view:SupplierUserControl />
+            </TabItem>
+            <TabItem Header="Банки">
+                <view:BankUserControl />
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

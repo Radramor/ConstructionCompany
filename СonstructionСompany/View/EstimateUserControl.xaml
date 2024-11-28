@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="СonstructionСompany.View.EstimateUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:СonstructionСompany.View"
+             xmlns:main="clr-namespace:СonstructionСompany"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" IsVisibleChanged="UserControl_IsVisibleChanged">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Левая сторона: Поля ввода и кнопки -->
+        <StackPanel Grid.Column="0" Margin="10" VerticalAlignment="Top">
+
+            <TextBox 
+                x:Name="IdTextBox" 
+                main:TextBoxPlaceholderBehavior.Placeholder="ID сметы" 
+                Margin="0,0,0,10" 
+                Width="250" 
+                Height="25" 
+                IsReadOnly="True" 
+                Background="LightGray"/>
+
+            <TextBox 
+                x:Name="ObjectIdTextBox" 
+                main:TextBoxPlaceholderBehavior.Placeholder="ID объекта" 
+                Margin="0,0,0,10" 
+                Width="250" 
+                Height="25"/>
+
+            <TextBox 
+                x:Name="ObjectNameTextBox" 
+                main:TextBoxPlaceholderBehavior.Placeholder="Объект" 
+                Margin="0,0,0,10" 
+                Width="250" 
+                Height="25" 
+                IsReadOnly="True" 
+                Background="LightGray"/>
+            <!-- Поля для добавления строительных материалов -->
+            <TextBlock Text="Строительные материалы:" Margin="0,5,0,2"/>
+            <ComboBox x:Name="BuildingMaterialComboBox" Margin="0,0,0,10" Width="250" Height="25" DisplayMemberPath="Name" />
+            
+            <TextBox 
+                x:Name="CountMaterialTextBox" 
+                main:TextBoxPlaceholderBehavior.Placeholder="Количество материала" 
+                Margin="0,0,0,10" 
+                Width="250" 
+                Height="25"/>
+            
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,10,0,0">
+                <Button x:Name="ButtonClearAllMaterials" Margin="5" Width="200" Click="ButtonClearAllMaterials_Click">
+                    <TextBlock TextAlignment="Center"> Очистить все <LineBreak/>  материалы </TextBlock>
+                </Button>
+                <Button x:Name="ButtonAddMaterial" Content="Добавить материал" Margin="5" Width="200" Click="ButtonAddMaterial_Click"/>
+                <!-- другие кнопки -->
+            </StackPanel>
+
+            <TextBox 
+                x:Name="BuildingMaterialsTextBox" 
+                main:TextBoxPlaceholderBehavior.Placeholder="Список строительных материалов" 
+                Margin="0,20,0,10" 
+                Width="250" 
+                Height="25" 
+                IsReadOnly="True" 
+                Background="LightGray"/>
+
+            <TextBox 
+                x:Name="CountMaterialsTextBox" 
+                main:TextBoxPlaceholderBehavior.Placeholder="Количество материалов" 
+                Margin="0,0,0,10" 
+                Width="250" 
+                Height="25" 
+                IsReadOnly="True" 
+                Background="LightGray"/>
+
+            <TextBox 
+                x:Name="TotalPriceTextBox" 
+                main:TextBoxPlaceholderBehavior.Placeholder="Общая стоимость" 
+                Margin="0,0,0,10" 
+                Width="250" 
+                Height="25" 
+                IsReadOnly="True" 
+                Background="LightGray"/>
+            
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,20,0,0">
+                <Button x:Name="ButtonAdd" Content="Добавить" Margin="5" Width="200" Click="ButtonAdd_Click"/>
+                <Button x:Name="ButtonUpdate" Content="Изменить" Margin="5" Width="200" Click="ButtonUpdate_Click"/>
+                <Button x:Name="ButtonDelete" Content="Удалить" Margin="5" Width="200" Click="ButtonDelete_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!-- Правая сторона: Таблица -->
+        <DataGrid x:Name="DataGridEstimates" Grid.Column="1" AutoGenerateColumns="False"
+                  IsReadOnly="True" SelectionMode="Single"
+                  SelectionChanged="DataGridEstimates_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*"/>
+                <DataGridTextColumn Header="ID объекта" Binding="{Binding ObjectId}" Width="*"/>
+                <DataGridTextColumn Header="Объект" Binding="{Binding Object.Name}" Width="*"/>
+                <DataGridTextColumn Header="Список строительных материалов" Binding="{Binding BuildingMaterialsString}" Width="*" />
+                <DataGridTextColumn Header="Количество материалов" Binding="{Binding CountMaterialsString}" Width="*" />
+                <DataGridTextColumn Header="Общая стоимость" Binding="{Binding TotalPrice}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
